@@ -15,5 +15,5 @@ dotnet run
 
 Gulp
 ```Bash
-dotnet build / watch
+gulp build / watch
 ```
