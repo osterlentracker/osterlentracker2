@@ -7,6 +7,7 @@ var paths = require('../paths');
 var assign = Object.assign || require('object.assign');
 var notify = require('gulp-notify');
 var typescript = require('gulp-tsb');
+var babel = require('gulp-babel');
 var exec = require('child_process').exec;
 
 // transpiles changed es6 files to SystemJS format
@@ -22,6 +23,11 @@ gulp.task('build-system', function() {
     .pipe(plumber())
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(typescriptCompiler())
+    .pipe(babel({
+      presets: [ 'es2015' ],
+      plugins: ['transform-runtime'],
+      sourceMaps: 'inline'
+    }))
     .pipe(sourcemaps.write({includeContent: false, sourceRoot: '/src'}))
     .pipe(gulp.dest(paths.output));
 });

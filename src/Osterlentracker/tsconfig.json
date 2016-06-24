@@ -1,11 +1,10 @@
 {
-  "version": "1.7.3",
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": "src/",
     "sourceMap": true,
-    "target": "es5",
-    "module": "amd",
+    "target": "ES6",
+    "module": "es6",
     "declaration": false,
     "noImplicitAny": false,
     "noResolve": true,

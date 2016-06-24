@@ -36,6 +36,3 @@
 /// <reference path="../test/unit/users.spec.js" />
 /// <reference path="../wallaby.js" />
 /// <reference path="config.js" />
-/// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
-/// <reference path="lib/bootstrap/dist/js/npm.js" />
-/// <reference path="lib/jquery/dist/jquery.js" />
