@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.css!';
 
 import {Router, RouterConfiguration} from 'aurelia-router'
 
+import signalr from "services/signalr";
+
 export class App {
   router: Router;
   
