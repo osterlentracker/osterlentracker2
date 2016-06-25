@@ -28,12 +28,19 @@ export class Chat {
     });
   }
 
+  detached() {
+    let chat = signalr.getHubProxy("chat");
+    chat.removeListener("onMessageReceived", this.add);  
+  }
+
+  add(date, user, message) {
+      $("#table tbody").append("<tr><td>" + date + "</td><td>" + user + "</td><td>" + message + "</td></tr>");
+  };
+
   async activate() {
     try {
     let chat = signalr.getHubProxy("chat");
-    chat.on("onMessageReceived", (date, user, message) => {
-      $("#table tbody").append("<tr><td>" + date + "</td><td>" + user + "</td><td>" + message + "</td></tr>");
-    });
+    chat.addListener("onMessageReceived", this.add);
     await signalr.connect();
     } catch (error) {
       let x = error;
