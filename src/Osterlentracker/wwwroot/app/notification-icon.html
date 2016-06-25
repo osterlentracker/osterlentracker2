@@ -1,7 +1,7 @@
-<template bindable="items, open">
+<template bindable="items, open, showCount">
     <require from="./notification-icon.css"></require>
     <div id="noti_Container">
-        <div id="noti_Counter">${items.length}</div>
+        <div id="noti_Counter" if.bind="showCount">${items.length}</div>
         <!--SHOW NOTIFICATIONS COUNT.-->
 
         <!--A CIRCLE LIKE BUTTON TO DISPLAY NOTIFICATION DROPDßOWN.-->
@@ -12,7 +12,7 @@
             <h3>Notifications</h3>
             <div style="height:300px">
                 <div repeat.for="item of items">
-                    <span>${item.title}</span>
+                    <span>${item.message}</span>
                 </div>
             </div>
             <div class="seeAll"><a href="#">See All</a></div>

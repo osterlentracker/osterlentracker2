@@ -10,6 +10,8 @@ export class Chat {
   heading = 'Chat';
   users = [];
 
+  chatHub = null;
+
   constructor(private http: HttpClient) {
 
   }
@@ -39,15 +41,18 @@ export class Chat {
 
   async activate() {
     try {
-    let chat = signalr.getHubProxy("chat");
-    chat.addListener("onMessageReceived", this.add);
-    await signalr.connect();
+      this.chatHub = signalr.getHubProxy("chat");
+      this.chatHub.addListener("onMessageReceived", this.add);
+      await signalr.connect();
     } catch (error) {
-      let x = error;
-      console.log(x);
+      console.error(x);
     }
     let r = await this.getResult();
     console.log(r);
     return r;
+  }
+
+  async deactivated() {
+    
   }
 }

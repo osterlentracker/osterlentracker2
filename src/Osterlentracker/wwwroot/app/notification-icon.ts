@@ -1,27 +1,49 @@
-import {bindable, bindingMode} from 'aurelia-framework';
+import {observable, bindable, bindingMode, inject, BindingEngine, ObserverLocator} from 'aurelia-framework';
 
+@inject(ObserverLocator)
 export class NotificationIconCustomElement {
-  @bindable items = [{ title: "test 1" }];
-  @bindable open = true;
+  @bindable({ defaultBindingMode: bindingMode.twoWay })
+  public items = [{ title: "test 1" }];
 
-  constructor() {
+  @observable
+  public open = true;
 
+  @observable
+  public showCount = true;
+
+  constructor(bindingEngine) {
+    this.bindingEngine = bindingEngine;
+
+    let observer = this.bindingEngine.getArrayObserver(this.items);
+      observer.subscribe((splice) => this.itemsChanged(splice));
   }
 
-  attached() {
-    $(document).ready(function () {
+    public itemsChanged(splices: { addedCount: number, index: number, removed: [] }): void {
+        console.log(splices);
+        this.showCount = true;
+    }
 
-        // ANIMATEDLY DISPLAY THE NOTIFICATION COUNTER.
-        $('#noti_Counter')
+   public openChanged(newValue: string, oldValue: string): void {
+        console.log(newValue);
+    }
+
+    public showCountChanged(newValue: string, oldValue: string): void {
+        if(this.showCount) {
+            $('#noti_Counter')
             .css({ opacity: 0 })
-            //.text('7')              // ADD DYNAMIC VALUE (YOU CAN EXTRACT DATA FROM DATABASE OR XML).
             .css({ top: '-10px' })
             .animate({ top: '-2px', opacity: 1 }, 500);
+        } else {
+            $('#noti_Counter').fadeOut('slow'); 
+        }
+    }
 
-        $('#noti_Button').click(function () {
+  attached() {
+    $(document).ready(() => {
+        $('#noti_Button').click(() => {
 
             // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
-            $('#notifications').fadeToggle('fast', 'linear', function () {
+            $('#notifications').fadeToggle('fast', 'linear', () => {
                 if ($('#notifications').is(':hidden')) {
                     //$('#noti_Button').css('background-color', '#2E467C');
                 }
@@ -34,7 +56,7 @@ export class NotificationIconCustomElement {
         });
 
         // HIDE NOTIFICATIONS WHEN CLICKED ANYWHERE ON THE PAGE.
-        $(document).click(function () {
+        $(document).click(() => {
             $('#notifications').hide();
 
             // CHECK IF NOTIFICATION COUNTER IS HIDDEN.
@@ -44,7 +66,7 @@ export class NotificationIconCustomElement {
             }
         });
 
-        $('#notifications').click(function () {
+        $('#notifications').click(() => {
             return false;       // DO NOTHING WHEN CONTAINER IS CLICKED.
         });
     });

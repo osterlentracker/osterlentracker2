@@ -58,6 +58,7 @@ class Signalr {
             this.hubs[hubName] = hub;
         }
         return hub;
+        //return new Hub(this.connection.createHubProxy(hubName));
     }
 }
 
