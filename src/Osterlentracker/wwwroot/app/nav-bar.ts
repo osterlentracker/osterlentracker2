@@ -4,13 +4,13 @@ import $ from "jquery";
 import signalr from "services/signalr";
 
 export class NavBarCustomElement {
-  @bindable({ defaultBindingMode: bindingMode.oneWay })
+  @bindable({ defaultBindingMode: bindingMode.twoWay })
   items = [];
 
-  @bindable({ defaultBindingMode: bindingMode.oneWay })
+  @bindable({ defaultBindingMode: bindingMode.twoWay })
   public showCount = false;
 
-  @bindable({ defaultBindingMode: bindingMode.oneWay })
+  @bindable
   router: Router;
 
   async attached() {
