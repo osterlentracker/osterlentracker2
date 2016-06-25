@@ -5,11 +5,11 @@ export class NotificationIconCustomElement {
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   public items = [{ title: "test 1" }];
 
-  @observable
+  @bindable({ defaultBindingMode: bindingMode.oneWay })
   public open = true;
 
-  @observable
-  public showCount = true;
+  @bindable({ defaultBindingMode: bindingMode.oneWay })
+  public showCount = false;
 
   constructor(bindingEngine) {
     this.bindingEngine = bindingEngine;
@@ -20,7 +20,7 @@ export class NotificationIconCustomElement {
 
     public itemsChanged(splices: { addedCount: number, index: number, removed: [] }): void {
         console.log(splices);
-        this.showCount = true;
+        //this.showCount = true;
     }
 
    public openChanged(newValue: string, oldValue: string): void {

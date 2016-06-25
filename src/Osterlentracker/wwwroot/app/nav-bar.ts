@@ -1,16 +1,16 @@
-import {bindable, Router} from 'aurelia-framework';
+import {bindable, bindingMode, Router} from 'aurelia-framework';
 
 import $ from "jquery";
 import signalr from "services/signalr";
 
 export class NavBarCustomElement {
-  @bindable
+  @bindable({ defaultBindingMode: bindingMode.oneWay })
   items = [];
 
-  @bindable
+  @bindable({ defaultBindingMode: bindingMode.oneWay })
   public showCount = false;
 
-  @bindable
+  @bindable({ defaultBindingMode: bindingMode.oneWay })
   router: Router;
 
   async attached() {
