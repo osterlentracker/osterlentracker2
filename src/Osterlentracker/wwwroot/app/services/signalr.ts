@@ -75,6 +75,10 @@ export class Hub {
         });
     }
 
+    on(event: string, handler: () => void) {
+        this.hub.on(event, handler);
+    }
+
     addListener(event: string, handler: () => void) {
         this.hub.on(event, handler);
     }
