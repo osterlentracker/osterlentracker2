@@ -1,6 +1,4 @@
 <template>
-  <require from="./secret-message"></require>
-
   <section class="au-animate">
     <h2>${heading}</h2>
 
@@ -25,15 +23,5 @@
       </div>
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
-
-    <hr />
-
-    <p>
-      Secret Message: <input type="text" value.bind="message" />
-    </p>
-    <p>
-      Allow Message to Destruct? <input type="checkbox" checked.bind="allowDestruction" />
-    </p>
-    <secret-message message.bind="message" allow-destruction.bind="allowDestruction"></secret-message>
   </section>
 </template>
