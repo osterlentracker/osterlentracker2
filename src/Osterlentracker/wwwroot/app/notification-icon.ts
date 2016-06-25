@@ -1,15 +1,20 @@
-import {observable, bindable, bindingMode, inject, BindingEngine, ObserverLocator} from 'aurelia-framework';
+import {observable, computed, bindable, bindingMode, inject, BindingEngine, ObserverLocator} from 'aurelia-framework';
 
 @inject(ObserverLocator)
 export class NotificationIconCustomElement {
   @bindable({ defaultBindingMode: bindingMode.twoWay })
-  public items = [{ title: "test 1" }];
+  public items = [];
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   public open = false;
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   public showCount = false;
+
+  @computed
+  get count() {
+      return this.items.filter(x => !x.read).length;
+  }
 
   constructor(bindingEngine) {
     this.bindingEngine = bindingEngine;
@@ -53,6 +58,9 @@ export class NotificationIconCustomElement {
             if(_this.open) {
                 _this.open = false;
             } else {
+                for(let x of this.items) {
+                    x.read = true;
+                }
                 _this.open = true;
             }
 
