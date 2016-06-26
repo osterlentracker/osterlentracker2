@@ -1,4 +1,5 @@
 import {observable, computed, bindable, bindingMode, inject, BindingEngine, ObserverLocator} from 'aurelia-framework';
+import $ from 'jquery';
 
 @inject(ObserverLocator)
 export class NotificationIconCustomElement {
@@ -19,13 +20,16 @@ export class NotificationIconCustomElement {
   constructor(bindingEngine) {
     this.bindingEngine = bindingEngine;
 
-     this.observer = this.bindingEngine.getArrayObserver.bind(bindingEngine)(this.items);
-    this.observer.subscribe((splice) => this.itemsChanged(splice));
+     let observer = this.bindingEngine.getArrayObserver.bind(bindingEngine)(this.items);
+      observer.subscribe((splice) => this.itemsChanged(splice));
   }
 
    public itemsChanged(splices: { addedCount: number, index: number, removed: [] }): void {
-        console.log(splices);
-        this.showCount = true;
+        if(this.count) {
+            this.showCount = true;
+        } else {
+            this.showCount = false;
+        }
     }
 
    public openChanged(newValue: string, oldValue: string): void {
@@ -34,6 +38,9 @@ export class NotificationIconCustomElement {
             this.showCount = false;
        } else {
              $('#notifications').fadeOut('fast', 'linear');
+             /*$('#noti_Button').css({
+                 color: 'darkgray'
+             });*/ 
        }
     }
 

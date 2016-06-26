@@ -11,7 +11,7 @@ namespace Osterlentracker.Hubs
         
     }
 
-    [HubName("chat")]
+    [HubName("notifications")]
     //[Authorize]
     public class NotificationHub : Hub
     {

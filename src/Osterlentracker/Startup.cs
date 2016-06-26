@@ -79,7 +79,7 @@ namespace Osterlentracker
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                //app.UseExceptionHandler("/Home/Error");
             }
             // Comment this line to NOT use index.html as the startup file. For example, when using Mvc.
             app.UseDefaultFiles();
@@ -89,12 +89,12 @@ namespace Osterlentracker
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
             
             // Uncomment this line to use Mvc as the startup route.
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=Home}/{action=Index}/{id?}");
-            //});
+            app.UseMvc(routes =>
+            {
+                   routes.MapRoute(
+                   name: "default",
+                   template: "{controller=Home}/{action=Index}/{id?}");
+            });
             
             app.UseWebSockets();
             app.UseSignalR();
