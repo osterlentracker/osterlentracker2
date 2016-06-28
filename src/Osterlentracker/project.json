@@ -44,7 +44,16 @@
         },
         "Microsoft.AspNetCore.SignalR.Server": "0.1.0-rc2-final",
         "Microsoft.AspNetCore.WebSockets.Server": "0.1.0-rc2-final",
-        "Microsoft.AspNetCore.Cors": "1.0.0-rc2-final"
+        "Microsoft.AspNetCore.Cors": "1.0.0-rc2-final",
+        "AspNet.Security.OAuth.GitHub": "1.0.0-alpha4-final",
+        "AspNet.Security.OAuth.Introspection": "1.0.0-alpha1-final",
+        "AspNet.Security.OAuth.Validation": "1.0.0-alpha1-final",
+        "Microsoft.AspNetCore.Authentication.Google": "1.0.0-rc2-final",
+        "Microsoft.AspNetCore.Authentication.Twitter": "1.0.0-rc2-final",
+        "OpenIddict": "1.0.0-alpha2-0331",
+        "OpenIddict.Assets": "1.0.0-alpha2-0331",
+        "OpenIddict.Mvc": "1.0.0-alpha2-0331",
+        "OpenIddict.Security": "1.0.0-alpha2-0331"
     },
 
   "tools": {
